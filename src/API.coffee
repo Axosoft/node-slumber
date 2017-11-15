@@ -98,7 +98,8 @@ API = callable class
 
     unless hasInsensitive request_options.headers, 'user-agent'
       defaultVersion = require('../package.json').version
-      request_options.headers['User-Agent'] = "node-slumber/#{defaultVersion}"
+      unless @opts.http_client == 'xhr'
+        request_options.headers['User-Agent'] = "node-slumber/#{defaultVersion}"
 
     return request_options
 
